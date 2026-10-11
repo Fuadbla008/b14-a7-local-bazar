@@ -3,38 +3,77 @@ import { nextCookies } from "better-auth/next-js";
 import { mongodbAdapter } from "@better-auth/mongo-adapter";
 import { MongoClient } from "mongodb";
 
-// MongoDB ক্লায়েন্ট তৈরি
-const client = new MongoClient(process.env.MONGODB_URI);
-const db = client.db(process.env.MONGODB_DB || "bazardor");
+let _auth = null;
 
-export const auth = betterAuth({
-  database: mongodbAdapter(db, { client }),
+function getAuth() {
+  if (_auth) return _auth;
 
-  baseURL: process.env.BETTER_AUTH_URL,
-  secret: process.env.BETTER_AUTH_SECRET,
+  const uri = process.env.MONGODB_URI;
+  const dbName = process.env.MONGODB_DB || "bazardor";
 
-  emailAndPassword: {
-    enabled: true,
-    requireEmailVerification: false,
-    minPasswordLength: 8,
-  },
+  if (!uri) throw new Error("MONGODB_URI is missing.");
 
-  socialProviders: {
-    google: {
-      clientId: process.env.GOOGLE_CLIENT_ID || "",
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET || "",
+  const client = new MongoClient(uri);
+  const db = client.db(dbName);
+
+  _auth = betterAuth({
+    database: mongodbAdapter(db, { client }),
+    baseURL: process.env.BETTER_AUTH_URL,
+    secret: process.env.BETTER_AUTH_SECRET,
+
+    emailAndPassword: {
+      enabled: true,
+      requireEmailVerification: false,
+      minPasswordLength: 8,
     },
-    github: {
-      clientId: process.env.GITHUB_CLIENT_ID || "",
-      clientSecret: process.env.GITHUB_CLIENT_SECRET || "",
-    },
-  },
 
-  advanced: {
-    database: {
-      joins: true,
+    socialProviders: {
+      google: {
+        clientId: process.env.GOOGLE_CLIENT_ID || "",
+        clientSecret: process.env.GOOGLE_CLIENT_SECRET || "",
+      },
+      github: {
+        clientId: process.env.GITHUB_CLIENT_ID || "",
+        clientSecret: process.env.GITHUB_CLIENT_SECRET || "",
+      },
     },
-  },
 
-  plugins: [nextCookies()],
-});
+
+    rateLimit: {
+      window: 60,
+      max: 100,
+      customRules: {
+        "/sign-in/social": {
+          window: 60,
+          max: 20, 
+        },
+        "/sign-in/email": {
+          window: 60,
+          max: 10,
+        },
+      },
+    },
+
+    advanced: {
+      database: { joins: true },
+    },
+
+    plugins: [nextCookies()],
+
+    trustedOrigins: [
+      "https://localbazar.zoogle.store",
+      "http://localhost:3000",           
+    ],
+  });
+
+  return _auth;
+}
+
+export const auth = new Proxy(
+  {},
+  {
+    get(_, prop) {
+      return getAuth()[prop];
+    },
+  }
+);
