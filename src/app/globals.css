@@ -37,6 +37,7 @@ body {
 /* ---------- Number style — tabular align only ---------- */
 .num,
 [data-num] {
+  font-family: var(--font-noto-bn), "Noto Sans Bengali", sans-serif;
   font-variant-numeric: tabular-nums;
   font-feature-settings: "tnum";
   letter-spacing: 0.02em;
