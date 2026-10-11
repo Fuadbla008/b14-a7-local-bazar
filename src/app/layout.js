@@ -1,4 +1,5 @@
 import { Hind_Siliguri, Noto_Sans_Bengali } from "next/font/google";
+import { Toaster } from "react-hot-toast";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import PriceTicker from "@/components/PriceTicker";
@@ -26,13 +27,24 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html
-      lang="bn" data-theme="light"
+      lang="bn"
       className={`${hindSiliguri.variable} ${notoBengali.variable}`}
     >
       <body className="min-h-screen flex flex-col">
         <Navbar />
         <PriceTicker />
         <main className="flex-1">{children}</main>
+
+        {/* ✅ Toast container — assignment requirement data-rht-toaster */}
+        <Toaster
+          position="top-center"
+          toastOptions={{
+            duration: 3000,
+            style: {
+              fontFamily: "var(--font-hind-siliguri), sans-serif",
+            },
+          }}
+        />
       </body>
     </html>
   );
