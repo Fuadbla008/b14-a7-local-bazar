@@ -14,7 +14,6 @@
   --color-flat: #6b7280;
   --color-flat-bg: #f3f4f6;
 
-  /* ✅ শুধু Hind Siliguri */
   --font-bangla: var(--font-hind-siliguri), "Hind Siliguri", sans-serif;
 
   --animate-marquee: marquee 40s linear infinite;

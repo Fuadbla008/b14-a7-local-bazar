@@ -47,7 +47,6 @@ export default function SignInPage() {
       subtitle="বিস্তারিত দাম, বাজার তুলনা ও প্রোফাইল দেখতে অ্যাকাউন্টে ঢুকুন।"
     >
       <form onSubmit={handleSubmit} className="space-y-4">
-        {/* ইমেইল */}
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-1.5">
             ইমেইল
@@ -63,7 +62,6 @@ export default function SignInPage() {
           />
         </div>
 
-        {/* পাসওয়ার্ড */}
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-1.5">
             পাসওয়ার্ড

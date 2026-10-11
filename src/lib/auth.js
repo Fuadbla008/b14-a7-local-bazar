@@ -38,6 +38,15 @@ function getAuth() {
       },
     },
 
+    account: {
+      accountLinking: {
+        enabled: true,
+        trustedProviders: ["google", "github"],
+        updateUserInfoOnLink: true,
+        allowDifferentEmails: false,
+      },
+    },
+
 
     rateLimit: {
       window: 60,
@@ -45,7 +54,7 @@ function getAuth() {
       customRules: {
         "/sign-in/social": {
           window: 60,
-          max: 20, 
+          max: 20,
         },
         "/sign-in/email": {
           window: 60,
@@ -62,7 +71,7 @@ function getAuth() {
 
     trustedOrigins: [
       "https://localbazar.zoogle.store",
-      "http://localhost:3000",           
+      "http://localhost:3000",
     ],
   });
 
