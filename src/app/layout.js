@@ -3,6 +3,7 @@ import { Toaster } from "react-hot-toast";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import PriceTicker from "@/components/PriceTicker";
+import Footer from "@/components/Footer";
 
 const hindSiliguri = Hind_Siliguri({
   subsets: ["bengali", "latin"],
@@ -23,14 +24,24 @@ export default function RootLayout({ children }) {
       <body className="min-h-screen flex flex-col">
         <Navbar />
         <PriceTicker />
+
         <main className="flex-1">{children}</main>
 
+        <Footer />
+
         <Toaster
+          data-rht-toaster
           position="top-center"
           toastOptions={{
             duration: 3000,
             style: {
               fontFamily: "var(--font-hind-siliguri), sans-serif",
+            },
+            success: {
+              iconTheme: { primary: "#16a34a", secondary: "#ffffff" },
+            },
+            error: {
+              iconTheme: { primary: "#ef4444", secondary: "#ffffff" },
             },
           }}
         />
