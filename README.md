@@ -9,7 +9,7 @@
 ## 📌 Live Links
 
 - **Live Site:** [https://localbazar.zoogle.store](https://localbazar.zoogle.store)
-- **GitHub Repository:** [https://github.com/your-username/bazardor](https://github.com/your-username/bazardor)
+- **GitHub Repository:** [https://github.com/Fuadbla008/b14-a7-local-bazar](https://github.com/Fuadbla008/b14-a7-local-bazar)
 
 ---
 
@@ -34,62 +34,77 @@
 | **BetterAuth** | Authentication — Email/Password, Google, GitHub OAuth |
 | **MongoDB Atlas + MongoDB Adapter** | Persistent storage for users, sessions, accounts |
 | **react-hot-toast** | Toast notifications (success, error, protected route) |
-| **REST API** | `https://openapi.programming-hero.com/api/bazardor` |
+| **REST API** | |
 | **Vercel** | Deployment & hosting |
 
 ---
 
 ## 📂 Project Structure
 
+```text
 bazardor/
 ├── src/
-│ ├── app/
-│ │ ├── layout.jsx → Root layout (Navbar + Ticker + Footer)
-│ │ ├── page.jsx → Home page
-│ │ ├── not-found.jsx → 404 page
-│ │ ├── globals.css → Tailwind + design tokens
-│ │ ├── category/[slug]/page.jsx → Category products + sort
-│ │ ├── product/[slug]/page.jsx → Product details (protected)
-│ │ ├── signin/page.jsx → Sign in
-│ │ ├── signup/page.jsx → Sign up
-│ │ ├── profile/page.jsx → My profile
-│ │ ├── profile/update/page.jsx → Update name
-│ │ └── api/auth/[...all]/route.js → BetterAuth handler
-│ ├── components/
-│ │ ├── Navbar.jsx → Logo + auth + category nav
-│ │ ├── CategoryNav.jsx → Category pills (active highlight)
-│ │ ├── PriceTicker.jsx → Infinite marquee
-│ │ ├── ProfileDropdown.jsx → User menu (profile / signout)
-│ │ ├── Hero.jsx → Home hero with CTA
-│ │ ├── SectionHeader.jsx → Reusable section title
-│ │ ├── ProductCard.jsx → Product card (emoji, price, change)
-│ │ ├── ProductGrid.jsx → Responsive grid + skeleton
-│ │ ├── ChangeBadge.jsx → ▲/▼/— change badge
-│ │ ├── BengaliDate.jsx → Bangla date (hydration-safe)
-│ │ ├── SortDropdown.jsx → Sort control (C1)
-│ │ ├── EmptyState.jsx → Empty/404 message
-│ │ ├── AuthCard.jsx → Auth form shell
-│ │ ├── SocialButtons.jsx → Google + GitHub buttons
-│ │ └── Footer.jsx → Figma-matching footer
-│ └── lib/
-│ ├── api.js → API wrapper + unit converter
-│ ├── toBengali.js → English → Bengali numerals
-│ ├── sortProducts.js → Numeric sort helper
-│ ├── auth.js → BetterAuth server config
-│ └── auth-client.js → BetterAuth client hooks
-├── .env.local → Local env (git-ignored)
-├── next.config.js
-├── package.json
-└── README.md
-
+│   ├── app/
+│   │   ├── layout.jsx                      # Root layout (Navbar + Ticker + Footer)
+│   │   ├── page.jsx                        # Home page
+│   │   ├── not-found.jsx                   # 404 page
+│   │   ├── globals.css                     # Tailwind CSS + design tokens
+│   │   ├── category/
+│   │   │   └── [slug]/
+│   │   │       └── page.jsx                # Category products + sorting
+│   │   ├── product/
+│   │   │   └── [slug]/
+│   │   │       └── page.jsx                # Protected product details
+│   │   ├── signin/
+│   │   │   └── page.jsx                    # Sign-in page
+│   │   ├── signup/
+│   │   │   └── page.jsx                    # Sign-up page
+│   │   ├── profile/
+│   │   │   ├── page.jsx                    # User profile
+│   │   │   └── update/
+│   │   │       └── page.jsx                # Update profile name
+│   │   └── api/
+│   │       └── auth/
+│   │           └── [...all]/
+│   │               └── route.js            # Better Auth API handler
+│   │
+│   ├── components/
+│   │   ├── Navbar.jsx                      # Logo, authentication + category nav
+│   │   ├── CategoryNav.jsx                 # Category pills + active highlight
+│   │   ├── PriceTicker.jsx                 # Infinite scrolling price ticker
+│   │   ├── ProfileDropdown.jsx             # Profile menu + sign-out
+│   │   ├── Hero.jsx                        # Homepage hero + CTA
+│   │   ├── SectionHeader.jsx               # Reusable section heading
+│   │   ├── ProductCard.jsx                 # Product card (emoji, price, change)
+│   │   ├── ProductGrid.jsx                 # Responsive grid + skeleton loading
+│   │   ├── ChangeBadge.jsx                 # Price change indicator (▲ / ▼ / —)
+│   │   ├── BengaliDate.jsx                 # Bangla date (hydration-safe)
+│   │   ├── SortDropdown.jsx                # Product sorting control
+│   │   ├── EmptyState.jsx                  # Empty state + 404 message
+│   │   ├── AuthCard.jsx                    # Authentication form wrapper
+│   │   ├── SocialButtons.jsx               # Google + GitHub authentication
+│   │   └── Footer.jsx                      # Website footer
+│   │
+│   └── lib/
+│       ├── api.js                          # API wrapper + unit converter
+│       ├── toBengali.js                    # English-to-Bengali numerals
+│       ├── sortProducts.js                 # Numeric product sorting helper
+│       ├── auth.js                         # Better Auth server configuration
+│       └── auth-client.js                  # Better Auth client hooks
+│
+├── .env.local                              # Local environment variables (git-ignored)
+├── next.config.js                          # Next.js configuration
+├── package.json                            # Project dependencies + scripts
+└── README.md                               # Project documentation
+```
 
 ## 🚀 Getting Started
 
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/your-username/bazardor.git
-cd bazardor
+https://github.com/Fuadbla008/b14-a7-local-bazar
+cd b14-a7-local-bazar
 
 ```
 ### 2. Install dependencies
@@ -104,7 +119,7 @@ Project root-এ .env.local file তৈরি করো:
 
 ```bash
 # API
-NEXT_PUBLIC_API_BASE_URL=https://openapi.programming-hero.com/api/bazardor
+NEXT_PUBLIC_API_BASE_URL=hide_for_privacy
 
 # App URL
 NEXT_PUBLIC_APP_URL=http://localhost:3000
@@ -162,7 +177,7 @@ npm start
 
 ### API Reference
 
-Base URL: https://openapi.programming-hero.com/api/bazardor
+Base URL: my_api_link
 
 Method	       Endpoint	                    Description
 GET	        /products	                All products (33 items)
@@ -193,6 +208,8 @@ Sticky navbar with price ticker marquee below
 
 ## Requirements Covered
 
+```text
+
 ☑ Navbar with logo, Bangla date, category links, auth buttons
 ☑ Price ticker (infinite marquee with emoji + price + change badge)
 ☑ Hero with anchor CTA (#সব-পণ্য scroll)
@@ -213,5 +230,6 @@ Sticky navbar with price ticker marquee below
 ☑ Sort dropdown with Bengali numerals handling (C1)
 ☑ README with project name, description, technologies, 5 features (C2)
 
----
+```
 
+---
